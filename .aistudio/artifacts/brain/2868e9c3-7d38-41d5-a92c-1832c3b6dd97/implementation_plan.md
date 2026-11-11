@@ -1,113 +1,91 @@
-# Myrtle Avenue Heathrow Visitor & Creator Guide
+# Monetization Strategy: Display Ads & Contextual Aviation Affiliates
 
-A visitor-focused, creator-ready web application designed specifically for tourists, casual spectators, and TikTok/Instagram creators visiting the legendary Myrtle Avenue at London Heathrow (EGLL). It instantly answers the single most critical question: **"Are planes landing directly over Myrtle Avenue right now?"** and guides visitors on timing, 3 PM runway switchovers, giant A380 arrivals, and phone camera filming tips.
+A comprehensive, production-grade monetization architecture for the Myrtle Avenue Visitor & Creator Guide. Combines standard IAB Google AdSense display banners with native in-feed sponsor cards promoting **runway-view Heathrow hotels** and **phone creator accessories**, ensuring strong revenue potential without ruining the clean user experience.
 
 ---
 
 ### User Review & Critical Decisions
 
 > [!IMPORTANT]
-> Based on your feedback in Phase 1, we have aligned on the following structural pivots:
-> - **Primary Target Audience**: Casual visitors, tourists, families, and creators who want the breathtaking low-flyover experience without needing to decipher complex pilot telemetry.
-> - **Sound Effects**: **Completely removed**. No confusing synthesized jet noises or radio chatter; the app focuses on crystal-clear visual guidance and timing.
-> - **Hero Feature**: A bold, unmistakable **"Are Planes Landing Here Right Now?" Live Checker** at the very top of the app, explaining current runway usage, the 3 PM switchover, and weather impact in plain English.
-> - **Alternative Spot Finder**: If planes are landing on the other runway (27R) or taking off over Myrtle Avenue (09R), the app clearly informs visitors and provides interactive walking/bus directions to alternative viewing spots (such as Hatton Cross roundabout or northern viewing areas).
+> Based on your Phase 1 selections, we are implementing:
+> - **Primary Ad Engine**: Standard display ad banners with native support for **Google AdSense** script injection (`adsbygoogle.js`) and auto-fallback sponsor units when AdSense is pending approval or blocked.
+> - **Placement Style**: Contextual **in-feed native sponsor cards** blended directly into the arrivals feed and creator guides, plus standard responsive leaderboard banner slots.
+> - **Affiliate Focus**: Hand-picked high-converting products specifically for Myrtle Avenue visitors:
+>   1. **Heathrow Runway View Hotels** (*Renaissance London Heathrow*, *Hilton Garden Inn T2/T3*, *Sofitel T5*) where aviation enthusiasts and tourists pay premium rates for tarmac-facing balconies.
+>   2. **Phone Creator & Spotter Gear** (*MagSafe video tripods*, *20,000mAh power banks*, *lens cleaning kits*, *portable pocket stepladders*).
 
 ---
 
 ### 1. Overview & Core Concept
 
-- **The Problem**: Hundreds of tourists and social media creators travel on the London Underground to Hatton Cross after seeing viral videos of massive Airbus A380s skimming trees at Myrtle Avenue, only to arrive and find empty skies because Heathrow switched to the northern runway (27R) at 3 PM, or because easterly winds shifted operations.
-- **The Solution**: A fast, visually rich companion that instantly shows:
-  1. **Live Landing Status**: A high-impact status card (**"YES, LANDING OVERHEAD NOW"** vs. **"SWITCHED: PLANES LANDING ON NORTH RUNWAY 27R"** vs. **"EASTERLY: PLANES CLIMBING OUT ON TAKEOFF"**).
-  2. **Next Giant Heavies Countdown**: A countdown for superjumbos and widebodies (*Emirates A380 in 4 mins*, *British Airways A350 in 11 mins*).
-  3. **3 PM Switchover Watch**: An intuitive clock explaining why planes switch runways halfway through the day and what to do next.
-  4. **Creator & TikTok Filming Guide**: How to shoot the viral shot on iPhone/Android (0.5x ultra-wide lens, 60fps/120fps slow-motion, standing spots on the grass).
-  5. **Golden Hour Video Lighting**: When the sunlight turns aircraft into glowing amber giants over the field.
+- **The Opportunity**: Visitors using this app are high-intent aviation enthusiasts, tourists visiting London, and social media creators on-site at Heathrow. They are primed to book nearby hotels with runway views, purchase creator filming accessories, or click travel-related ads.
+- **The Solution**:
+  1. **Google AdSense Display Units**: Standard responsive leaderboard (728x90 / 320x50) and rectangle (300x250) units with ready-to-use AdSense configuration.
+  2. **In-Feed Native Sponsor Cards**: Blended seamlessly into the Heavy Arrivals feed, featuring runway hotel booking links and creator gear recommendations with affiliate attribution tags.
+  3. **AdSense Config & Transparency Modal**: A dedicated panel for the site owner to paste their Google AdSense Publisher ID (`pub-XXXXXX`) and affiliate IDs directly, with complete FTC compliance disclosures.
+  4. **Graceful Zero-Broken-Ad Policy**: If an ad blocker is running or AdSense is awaiting approval, the slots gracefully collapse or show useful affiliate travel recommendations rather than blank white boxes.
 
 ---
 
 ### 2. User Experience & Visual Design
 
-#### Key User Flows
+#### Placements & Visual Rhythm
 
-1. **Instant Decision Flow ("Should I Go Now?")**:
-   - The user opens the app on their phone at Hatton Cross station or Central London.
-   - The top hero card prominently states:
-     - 🟢 **"YES! Planes are landing right over Myrtle Avenue right now."** (Until 15:00 local time under westerly winds).
-     - 🟡 **"SWITCHING SOON: 15:00 Runway Switch in 24 mins."**
-     - 🔴 **"PLANES NOT LANDING HERE: Landing on 27R (North Runway)."** + One-tap button: *"See Where To Go Instead (Hatton Cross Roundabout / T5 Viewing)"*.
-2. **Next Monster Plane Tracker**:
-   - Visual cards showing the next incoming widebody aircraft (*Airbus A380*, *Boeing 777-300ER*, *Airbus A350-1000*) with origin city flags, minutes until overhead, and aircraft size badge (*"World's Biggest Passenger Plane"*, *"Twin-Engine Giant"*).
-3. **Creator Camera Guide**:
-   - Quick visual toggle for phone camera settings:
-     - **0.5x Ultra-Wide Mode**: Stand by the corner fence to capture the entire 80-meter wingspan + grass field.
-     - **4K 60fps / 120fps Slow-Mo**: When to press record as the aircraft emerges from the cloud base.
-     - **Audio Note**: Turn off wind noise filters on your phone; the engine rumble in person is naturally earth-shaking.
-4. **Getting There & Field Essentials**:
-   - Step-by-step walk from Hatton Cross Piccadilly Line tube station (with interactive map).
-   - Strict parking warning: Explaining why driving is a trap (residents parking tickets) and tube is 100x easier.
-   - Nearest restrooms, food, and warm drinks at the BP/M&S store.
-
-#### Visual Identity & Theme
-
-- **Aesthetic Direction**: Vibrant, welcoming, consumer-grade travel & creator guide with aeronautical precision. High-contrast cards for outdoor daylight readability on mobile screens.
-- **Color Palette**:
-  - Dominant Canvas: Deep slate charcoal (`#090D16` / `#0F172A`) with warm amber accents (`#F59E0B`) and emerald green operational indicators (`#10B981`).
-  - Alert States: High-visibility emerald (active landing here), amber (switch pending / easterly takeoff), and rose/slate (landing on opposite runway).
-- **Typography**: `Plus Jakarta Sans` for clean, friendly, modern headings and body text, paired with `JetBrains Mono` for ETA countdowns and runway identifiers.
-- **Layout Rhythm**: Mobile-first touch ergonomics (touch targets $\ge 44\text{px}$) that seamlessly scales to full 1440px desktop width with multi-column grid balance.
+1. **Dashboard In-Feed Native Card (Between Flight Cards)**:
+   - Positioned naturally within the incoming heavies list (e.g. after the second flight card).
+   - Styled as a clean card with an unobtrusive `Sponsored` label in muted typography.
+   - Highlights *Renaissance London Heathrow Runway View Rooms* ("Watch A380s touch down from your bedroom window").
+2. **Creator Guide Gear Recommendations**:
+   - Integrated into the TikTok/Instagram guide: *"Recommended Gear for Filming at Myrtle Ave"* showcasing MagSafe video tripods, 20,000mAh portable power banks, and lens wipes.
+3. **Responsive Display Banner Slots**:
+   - Positioned between the hero status card and the radar section (`max-w-4xl mx-auto py-2`).
+   - Adapts from a full 728x90 Leaderboard on desktop to a 320x50 / 300x100 Mobile Banner on phones.
+4. **Affiliate Disclosure & Ad Settings**:
+   - A quiet link in the footer: *"Sponsor & Affiliate Disclosure"* explaining that links may earn a commission, maintaining full compliance with advertising standards.
 
 ---
 
 ### 3. Key Product Decisions & Trade-Offs
 
-- **Decision 1: Eliminating Audio Synthesizer**:
-  - *Chosen Approach*: Remove synthesized audio and Web Audio API oscillators completely.
-  - *Why*: User feedback clearly noted that visitors and spotters do not understand or need synthesized engine whine or static bursts on a mobile website. In person, the planes themselves provide thunderous sound.
-  - *Alternative Considered*: Ambient recorded MP3s. Rejected because mobile browsers aggressively block audio autoplay, causing friction.
-- **Decision 2: Simplifying from Pilot Telemetry to Tourist / Creator Value**:
-  - *Chosen Approach*: Replace dense raw ADS-B transponder tables with clear, friendly flight cards highlighting airline, aircraft size, minutes to overhead, and origin city.
-  - *Why*: Flightradar24 already exists for technical avgeeks; Myrtle Avenue visitors need to know *when the big A380 is passing* and *if they are standing in the right spot*.
-- **Decision 3: Dedicated "What If Planes Land on the Other Side?" Guidance**:
-  - *Chosen Approach*: Provide an interactive "Runway Switch & Alternative Spots" section that clearly explains the 3 PM rule and directs visitors to alternative viewing spots when Myrtle Avenue is quiet.
-  - *Why*: Solves the #1 complaint of tourists visiting Myrtle Avenue and leaving disappointed.
+- **Decision 1: Native In-Feed Sponsors vs. Aggressive Popups / Interstitials**:
+  - *Chosen Approach*: Strictly zero popups, interstitials, or floating bottom sticky ad bars that cover mobile content. In-feed native cards and responsive banner slots respect the mobile thumb zone.
+  - *Why*: Aggressive popups destroy user trust and cause immediate bounce on mobile browsers.
+- **Decision 2: Dual Mode (AdSense Script + Affiliate Fallback)**:
+  - *Chosen Approach*: Support real Google AdSense (`<ins class="adsbygoogle">`) while providing immediate affiliate card fallbacks.
+  - *Why*: New sites often take 1–3 weeks for Google AdSense site approval. Having affiliate cards ensures the app can generate revenue from Day 1.
+- **Decision 3: Configurable Publisher Credentials**:
+  - *Chosen Approach*: Centralized config in `src/config/monetization.ts` where you can set your AdSense Client ID (`ca-pub-XXXXXXXXXX`) and Amazon / Booking.com affiliate tags in one place.
 
 ---
 
 ### 4. Technical Architecture & Data Strategy
 
 ```
-┌────────────────────────────────────────────────────────────────────────┐
-│                        Myrtle Avenue Hub App                           │
-└──────────────────────────────────┬─────────────────────────────────────┘
-                                   │
-         ┌─────────────────────────┼─────────────────────────┐
-         ▼                         ▼                         ▼
-┌──────────────────┐     ┌──────────────────┐      ┌──────────────────┐
-│  Live Runway     │     │  Giant Heavies   │      │  Creator Guide   │
-│  Status Checker  │     │  Inbound Stream  │      │  & Phone Tips    │
-│  - 27L vs 27R    │     │  - A380/777/A350 │      │  - 0.5x UltraWide│
-│  - 3 PM Switch   │     │  - Time to Flyover│     │  - Slow-Mo Video │
-│  - Winds/Weather │     │  - Visual cards  │      │  - Exact Spots   │
-└──────────────────┘     └──────────────────┘      └──────────────────┘
-         │                         │                         │
-         └─────────────────────────┼─────────────────────────┘
-                                   │
-         ┌─────────────────────────┴─────────────────────────┐
-         ▼                                                   ▼
-┌──────────────────────────────────┐       ┌──────────────────────────────────┐
-│  Alternative Spot Finder         │       │  Golden Hour & Sunset Tracker    │
-│  - Hatton Cross Roundabout       │       │  - Peak amber lighting windows   │
-│  - Northern 27R vantage points   │       │  - Solar elevation & runway axis │
-└──────────────────────────────────┘       └──────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────────┐
+│                      Monetization Architecture                          │
+└────────────────────────────────────┬────────────────────────────────────┘
+                                     │
+           ┌─────────────────────────┴─────────────────────────┐
+           ▼                                                   ▼
+┌──────────────────────────────────┐        ┌──────────────────────────────────┐
+│   Google AdSense Display Engine  │        │   Contextual Affiliate Cards     │
+│   - adsbygoogle.js script loader │        │   - Runway View Hotels           │
+│   - Responsive Leaderboard slot  │        │   - Phone Creator Video Gear     │
+│   - AdBlocker detection fallback │        │   - FTC Affiliate Disclosures    │
+└──────────────────────────────────┘        └──────────────────────────────────┘
+           │                                                   │
+           └─────────────────────────┬─────────────────────────┘
+                                     │
+                                     ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│                  Centralized Config: monetization.ts                    │
+│      - adSenseClientId, adSlotIds, hotelAffiliateUrl, gearLinks         │
+└─────────────────────────────────────────────────────────────────────────┘
 ```
 
-#### Core Data Entities & Components
+#### Component & File Structure
 
-1. **`RunwayStatusCard`**: Displays current status (Open for Arrivals / Switched to North / Easterly Takeoffs), time remaining until next 15:00 switch, wind direction, and recommendation score.
-2. **`HeavyArrivalsFeed`**: Filtered highlight reel of approaching widebodies (Airbus A380, A350, Boeing 777, 787) with countdown timers and photo previews.
-3. **`CreatorCameraGuide`**: Interactive mobile framing guide with visual tips on shutter speeds, 0.5x zoom framing, and slow-mo video capture.
-4. **`AlternativeSpotsDirectory`**: Step-by-step guide and walking directions to secondary Heathrow spotting areas when Myrtle Avenue isn't in use.
-5. **`VisitorMapAndTransit`**: Transit guide from Hatton Cross station, parking warnings, amenities, and food locations.
-6. **`SunGoldenHourBox`**: Preserved and refined golden hour calculator showing when social media video lighting reaches peak warmth.
+1. **`src/config/monetization.ts`**: Centralized configuration holding AdSense client ID, ad slot IDs, and curated affiliate partners (Hotels & Creator Gear).
+2. **`src/components/AdSenseBanner.tsx`**: Reusable display banner component supporting real AdSense script injection with placeholder/affiliate fallback.
+3. **`src/components/NativeSponsorCard.tsx`**: In-feed native card highlighting runway-view hotels and phone video accessories.
+4. **`src/components/MonetizationDisclosureModal.tsx`**: Legal disclosure and partner transparency modal for FTC/ASA compliance.

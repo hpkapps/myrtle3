@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Camera, Smartphone, Sparkles, Video, Eye, CheckCircle2, AlertTriangle } from 'lucide-react';
+import { Camera, Smartphone, Sparkles, Video, Eye, CheckCircle2, AlertTriangle, ExternalLink, ShoppingBag, BatteryCharging } from 'lucide-react';
+import { MONETIZATION_CONFIG } from '../config/monetization';
 
 export const CreatorGuide: React.FC = () => {
   const [activePreset, setActivePreset] = useState<'ultrawide' | 'slowmo' | 'selfie'>('ultrawide');
@@ -202,6 +203,61 @@ export const CreatorGuide: React.FC = () => {
           <p className="text-slate-400 leading-relaxed text-[11px]">
             3 to 5 seconds after a heavy widebody passes, a noticeable gust of warm engine air wash blows across the grass. Hold onto your hats!
           </p>
+        </div>
+      </div>
+
+      {/* Recommended Creator Gear Affiliates Section */}
+      <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <div className="flex items-center gap-2 text-xs font-mono font-bold text-amber-400 uppercase tracking-wide">
+              <ShoppingBag className="w-4 h-4 text-amber-400" />
+              <span>Recommended Creator Gear for Myrtle Avenue</span>
+            </div>
+            <h3 className="text-lg font-bold text-slate-100 mt-0.5">
+              Essential Phone Accessories Tested on the Lawn
+            </h3>
+          </div>
+          <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider">
+            Curated Affiliate Recommendations
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+          {MONETIZATION_CONFIG.affiliates
+            .filter((p) => p.category === 'gear')
+            .map((gear) => (
+              <div
+                key={gear.id}
+                className="p-4 rounded-xl bg-slate-950 border border-slate-800 hover:border-amber-500/50 transition-all flex flex-col justify-between space-y-3"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className="text-xs font-bold text-slate-100">{gear.title}</span>
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20">
+                      {gear.badge}
+                    </span>
+                  </div>
+                  <div className="text-xs text-amber-300/80 font-medium">{gear.tagline}</div>
+                  <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                    {gear.description}
+                  </p>
+                </div>
+
+                <div className="pt-3 border-t border-slate-800/80 flex items-center justify-between">
+                  <span className="text-xs font-mono text-slate-400">{gear.priceNote}</span>
+                  <a
+                    href={gear.url}
+                    target="_blank"
+                    rel="noopener noreferrer sponsored"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs transition-colors shadow-xs"
+                  >
+                    <span>{gear.ctaText}</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
+              </div>
+            ))}
         </div>
       </div>
     </div>

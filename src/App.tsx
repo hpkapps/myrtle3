@@ -18,7 +18,9 @@ import { SunGoldenHourBox } from './components/SunGoldenHourBox';
 import { RadarScope } from './components/RadarScope';
 import { OfficialSchedule2026 } from './components/OfficialSchedule2026';
 import { getScheduleForDate } from './utils/heathrowSchedule2026';
-import { ArrowRight, Sparkles, MapPin, Camera, Clock, Calendar, FileText } from 'lucide-react';
+import { AdSenseBanner } from './components/AdSenseBanner';
+import { MonetizationDisclosureModal } from './components/MonetizationDisclosureModal';
+import { ArrowRight, Sparkles, MapPin, Camera, Clock, Calendar, FileText, ShieldCheck } from 'lucide-react';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<string>('status');
@@ -26,6 +28,9 @@ export default function App() {
   const [isSimulating, setIsSimulating] = useState<boolean>(true);
   const [simSpeed, setSimSpeed] = useState<number>(1);
   const [selectedFlightId, setSelectedFlightId] = useState<string | null>(null);
+
+  // Affiliate & Advertising Disclosure Modal state
+  const [isDisclosureOpen, setIsDisclosureOpen] = useState<boolean>(false);
 
   // Simulation mode for runway status (AUTO follows real time, or force 27L/27R/09R)
   const [simulatedMode, setSimulatedMode] = useState<SimulatedRunwayMode>('AUTO');
@@ -245,6 +250,9 @@ export default function App() {
               </div>
             </div>
 
+            {/* In-page Responsive AdSense Display / Sponsor Banner */}
+            <AdSenseBanner />
+
             {/* Approach Radar Scope for visual spatial context */}
             <div className="space-y-2">
               <div className="flex items-center justify-between">
@@ -291,12 +299,19 @@ export default function App() {
       {/* Quiet Clean Footer */}
       <footer className="border-t border-slate-800 bg-slate-950 py-6 text-xs text-slate-500">
         <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <span className="font-semibold text-slate-300">Myrtle Avenue Visitor Guide</span>
             <span aria-hidden="true">·</span>
             <span>London Heathrow (EGLL)</span>
             <span aria-hidden="true">·</span>
             <span>Feltham TW14 9QU</span>
+            <span aria-hidden="true">·</span>
+            <button
+              onClick={() => setIsDisclosureOpen(true)}
+              className="hover:text-slate-300 underline underline-offset-2 transition-colors cursor-pointer"
+            >
+              Ads &amp; Affiliate Disclosure
+            </button>
           </div>
 
           <div className="text-slate-500 text-[11px] font-mono">
@@ -304,6 +319,12 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      {/* Monetization & Affiliate Compliance Modal */}
+      <MonetizationDisclosureModal
+        isOpen={isDisclosureOpen}
+        onClose={() => setIsDisclosureOpen(false)}
+      />
     </div>
   );
 }

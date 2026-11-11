@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Flight } from '../types/aviation';
 import { Plane, Sparkles, Filter, Clock, MapPin, Eye, Camera } from 'lucide-react';
+import { NativeSponsorCard } from './NativeSponsorCard';
+import { MONETIZATION_CONFIG } from '../config/monetization';
 
 interface HeavyArrivalsFeedProps {
   flights: Flight[];
@@ -93,93 +95,98 @@ export const HeavyArrivalsFeed: React.FC<HeavyArrivalsFeedProps> = ({
 
       {/* Cards Grid */}
       <div className="p-4 sm:p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
-        {filtered.slice(0, 6).map((flight, idx) => {
+        {filtered.slice(0, 5).map((flight, idx) => {
           const isA380 = flight.aircraftType.includes('A380') || flight.icaoType === 'A388';
           const isOverhead = flight.status === 'Overhead Myrtle Ave';
-          const isShortFinal = flight.distanceNM <= 1.2;
 
           return (
-            <div
-              key={flight.id}
-              className={`p-4 rounded-xl border transition-all relative overflow-hidden flex flex-col justify-between ${
-                isOverhead
-                  ? 'bg-gradient-to-br from-amber-950/60 via-slate-900 to-slate-900 border-amber-500 shadow-lg shadow-amber-950/30'
-                  : isA380
-                  ? 'bg-slate-950/90 border-sky-500/30 hover:border-sky-500/60'
-                  : 'bg-slate-950/70 border-slate-800 hover:border-slate-700'
-              }`}
-            >
-              <div>
-                {/* Top Badge: Airplane Type & Category */}
-                <div className="flex items-center justify-between gap-2 mb-2">
-                  <span
-                    className={`inline-flex items-center gap-1 text-[11px] font-mono font-bold px-2 py-0.5 rounded ${
-                      isA380
-                        ? 'bg-sky-500/20 text-sky-300 border border-sky-500/30'
-                        : 'bg-slate-800 text-slate-300'
-                    }`}
-                  >
-                    <Plane className="w-3 h-3 rotate-45" />
-                    <span>{isA380 ? 'Double-Decker Superjumbo' : flight.aircraftType}</span>
-                  </span>
-
-                  <span className="text-xs font-mono font-bold text-amber-400">
-                    {flight.flightNumber}
-                  </span>
-                </div>
-
-                {/* Airline & Origin */}
-                <h3 className="text-base font-bold text-slate-100 flex items-center justify-between">
-                  <span>{flight.airline}</span>
-                  <span className="text-xs font-mono font-normal text-slate-400">
-                    {flight.registration}
-                  </span>
-                </h3>
-
-                <div className="flex items-center gap-1.5 text-xs text-slate-300 mt-1">
-                  <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                  <span>
-                    Flying in from <strong>{flight.origin.city}</strong> ({flight.origin.code})
-                  </span>
-                </div>
-
-                {flight.liveryNote && (
-                  <p className="text-[11px] text-amber-300/90 italic mt-1 line-clamp-1">
-                    Special: {flight.liveryNote}
-                  </p>
-                )}
-              </div>
-
-              {/* Bottom Strip: Countdown & Altitude */}
-              <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-end justify-between">
+            <React.Fragment key={flight.id}>
+              <div
+                className={`p-4 rounded-xl border transition-all relative overflow-hidden flex flex-col justify-between ${
+                  isOverhead
+                    ? 'bg-gradient-to-br from-amber-950/60 via-slate-900 to-slate-900 border-amber-500 shadow-lg shadow-amber-950/30'
+                    : isA380
+                    ? 'bg-slate-950/90 border-sky-500/30 hover:border-sky-500/60'
+                    : 'bg-slate-950/70 border-slate-800 hover:border-slate-700'
+                }`}
+              >
                 <div>
-                  <span className="text-[10px] font-mono text-slate-400 block uppercase">
-                    Overhead Time
-                  </span>
-                  <div className="flex items-baseline gap-1 mt-0.5">
-                    {flight.etaSeconds <= 8 ? (
-                      <span className="text-lg font-bold font-mono text-amber-400 animate-pulse">
-                        OVERHEAD NOW!
-                      </span>
-                    ) : (
-                      <>
-                        <span className="text-xl font-bold font-mono text-slate-100 tabular-nums">
-                          {Math.floor(flight.etaSeconds / 60)}m {flight.etaSeconds % 60}s
+                  {/* Top Badge: Airplane Type & Category */}
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <span
+                      className={`inline-flex items-center gap-1 text-[11px] font-mono font-bold px-2 py-0.5 rounded ${
+                        isA380
+                          ? 'bg-sky-500/20 text-sky-300 border border-sky-500/30'
+                          : 'bg-slate-800 text-slate-300'
+                      }`}
+                    >
+                      <Plane className="w-3 h-3 rotate-45" />
+                      <span>{isA380 ? 'Double-Decker Superjumbo' : flight.aircraftType}</span>
+                    </span>
+
+                    <span className="text-xs font-mono font-bold text-amber-400">
+                      {flight.flightNumber}
+                    </span>
+                  </div>
+
+                  {/* Airline & Origin */}
+                  <h3 className="text-base font-bold text-slate-100 flex items-center justify-between">
+                    <span>{flight.airline}</span>
+                    <span className="text-xs font-mono font-normal text-slate-400">
+                      {flight.registration}
+                    </span>
+                  </h3>
+
+                  <div className="flex items-center gap-1.5 text-xs text-slate-300 mt-1">
+                    <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                    <span>
+                      Flying in from <strong>{flight.origin.city}</strong> ({flight.origin.code})
+                    </span>
+                  </div>
+
+                  {flight.liveryNote && (
+                    <p className="text-[11px] text-amber-300/90 italic mt-1 line-clamp-1">
+                      Special: {flight.liveryNote}
+                    </p>
+                  )}
+                </div>
+
+                {/* Bottom Strip: Countdown & Altitude */}
+                <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-end justify-between">
+                  <div>
+                    <span className="text-[10px] font-mono text-slate-400 block uppercase">
+                      Overhead Time
+                    </span>
+                    <div className="flex items-baseline gap-1 mt-0.5">
+                      {flight.etaSeconds <= 8 ? (
+                        <span className="text-lg font-bold font-mono text-amber-400 animate-pulse">
+                          OVERHEAD NOW!
                         </span>
-                        <span className="text-[10px] text-slate-400">left</span>
-                      </>
-                    )}
+                      ) : (
+                        <>
+                          <span className="text-xl font-bold font-mono text-slate-100 tabular-nums">
+                            {Math.floor(flight.etaSeconds / 60)}m {flight.etaSeconds % 60}s
+                          </span>
+                          <span className="text-[10px] text-slate-400">left</span>
+                        </>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="text-right font-mono text-xs">
+                    <span className="text-[10px] text-slate-400 block uppercase">Altitude</span>
+                    <span className="font-bold text-slate-200 tabular-nums">
+                      {flight.altitudeFt} ft
+                    </span>
                   </div>
                 </div>
-
-                <div className="text-right font-mono text-xs">
-                  <span className="text-[10px] text-slate-400 block uppercase">Altitude</span>
-                  <span className="font-bold text-slate-200 tabular-nums">
-                    {flight.altitudeFt} ft
-                  </span>
-                </div>
               </div>
-            </div>
+
+              {/* In-Feed Native Sponsor Card right after the 2nd flight */}
+              {idx === 1 && (
+                <NativeSponsorCard product={MONETIZATION_CONFIG.affiliates[0]} />
+              )}
+            </React.Fragment>
           );
         })}
       </div>

@@ -1,6 +1,6 @@
 {
-  "summary":  "Redesign Myrtle Avenue Planespotting Hub into a visitor-first and creator companion app. Features a prominent real-time 'Should I Go Now?' landing status checker, 3 PM runway switchover tracker, alternative viewing spots when operations change, a countdown tracker for giant A380/777 heavies, and a TikTok/Instagram camera guide, while completely removing confusing audio synthesis.",
-  "updatedAt":  "2026-11-11T03:58:20.022542382Z",
+  "summary":  "Implementation plan for app monetization: Standard Google AdSense display banner units, contextual in-feed native sponsor cards for runway view Heathrow hotels and creator gear, AdSense script loader with ad-blocker fallbacks, and affiliate disclosure compliance.",
+  "updatedAt":  "2026-11-11T04:24:50.562231923Z",
   "requestFeedback":  true,
   "userFacing":  true
 }
