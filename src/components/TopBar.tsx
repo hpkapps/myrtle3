@@ -1,51 +1,59 @@
 import React from 'react';
-import { Volume2, VolumeX, Plane, PlusCircle } from 'lucide-react';
+import { Plane, Compass, Camera, Sun, Train, CheckSquare } from 'lucide-react';
 
 interface TopBarProps {
   activeTab: string;
   onTabChange: (tab: string) => void;
-  isMuted: boolean;
-  onToggleMute: () => void;
-  onQuickLog: () => void;
-  overheadActive: boolean;
+  isLandingHere: boolean;
 }
 
 export const TopBar: React.FC<TopBarProps> = ({
   activeTab,
   onTabChange,
-  isMuted,
-  onToggleMute,
-  onQuickLog,
-  overheadActive,
+  isLandingHere,
 }) => {
   const navItems = [
-    { id: 'radar', label: 'Radar & Queue' },
-    { id: 'map', label: 'Spotter Map' },
-    { id: 'viewfinder', label: 'Viewfinder & Lens' },
-    { id: 'runway', label: 'Runway & Sun' },
-    { id: 'logbook', label: 'Logbook' },
-    { id: 'atc', label: 'ATC Scanner' },
+    { id: 'status', label: 'Live Status' },
+    { id: 'calendar', label: '2026 Schedule' },
+    { id: 'spots', label: '3 PM Switch & Spots' },
+    { id: 'creator', label: 'Creator Camera Guide' },
+    { id: 'golden', label: 'Golden Hour' },
+    { id: 'transit', label: 'Getting Here' },
+    { id: 'checklist', label: 'Checklist' },
   ];
 
   return (
-    <header className="sticky top-0 z-50 flex items-center justify-between gap-8 px-6 py-3.5 bg-slate-900/95 backdrop-blur-md border-b border-slate-800">
+    <header className="sticky top-0 z-50 flex items-center justify-between gap-8 px-5 py-3.5 bg-slate-900/95 backdrop-blur-md border-b border-slate-800">
       {/* Zone 1: Single text element wordmark */}
       <div className="flex items-center gap-3 shrink-0">
         <a
           href="/"
           onClick={(e) => {
             e.preventDefault();
-            onTabChange('radar');
+            onTabChange('status');
           }}
-          className="flex items-center gap-2 text-lg font-bold tracking-tight text-slate-100 hover:text-amber-400 transition-colors whitespace-nowrap"
+          className="flex items-center gap-2 text-base sm:text-lg font-bold tracking-tight text-slate-100 hover:text-amber-400 transition-colors whitespace-nowrap"
         >
           <span className="p-1.5 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20">
-            <Plane className="w-5 h-5 rotate-45" />
+            <Plane className="w-4 h-4 rotate-45" />
           </span>
-          <span>Myrtle Avenue Hub</span>
+          <span>Myrtle Avenue Guide</span>
         </a>
-        <span className="hidden sm:inline text-xs font-mono text-slate-400 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700/60">
-          EGLL / 27L
+
+        {/* Live Status Pill in Header */}
+        <span
+          className={`hidden sm:inline-flex items-center gap-1.5 text-[11px] font-mono font-bold px-2.5 py-0.5 rounded-full border ${
+            isLandingHere
+              ? 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30'
+              : 'bg-rose-500/15 text-rose-300 border-rose-500/30'
+          }`}
+        >
+          <span
+            className={`w-1.5 h-1.5 rounded-full ${
+              isLandingHere ? 'bg-emerald-400 animate-pulse' : 'bg-rose-400'
+            }`}
+          />
+          <span>{isLandingHere ? '27L Landing Active' : 'Switched to North (27R)'}</span>
         </span>
       </div>
 
@@ -59,7 +67,7 @@ export const TopBar: React.FC<TopBarProps> = ({
               onClick={() => onTabChange(item.id)}
               className={`px-3 py-1.5 text-xs font-medium rounded-md transition-all whitespace-nowrap shrink-0 ${
                 isActive
-                  ? 'bg-slate-800 text-amber-400 border border-slate-700 shadow-xs'
+                  ? 'bg-slate-800 text-amber-400 border border-slate-700 shadow-xs font-semibold'
                   : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
               }`}
             >
@@ -69,31 +77,13 @@ export const TopBar: React.FC<TopBarProps> = ({
         })}
       </nav>
 
-      {/* Zone 3: 1 primary action cluster */}
-      <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+      {/* Zone 3: 1 Primary CTA button */}
+      <div className="flex items-center gap-2 shrink-0">
         <button
-          onClick={onToggleMute}
-          title={isMuted ? 'Unmute Sound' : 'Mute Sound'}
-          className={`flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium rounded-lg border transition-all whitespace-nowrap shrink-0 ${
-            !isMuted
-              ? 'bg-slate-800 border-slate-700 text-amber-300'
-              : 'bg-slate-900 border-slate-800 text-slate-500 hover:text-slate-300'
-          }`}
+          onClick={() => onTabChange('spots')}
+          className="px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 transition-colors shadow-xs whitespace-nowrap"
         >
-          {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5 text-amber-400" />}
-          <span className="hidden md:inline">{isMuted ? 'Muted' : 'Audio On'}</span>
-        </button>
-
-        <button
-          onClick={onQuickLog}
-          className={`flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold rounded-lg transition-all whitespace-nowrap shrink-0 ${
-            overheadActive
-              ? 'bg-amber-500 text-slate-950 hover:bg-amber-400 shadow-md shadow-amber-500/20'
-              : 'bg-slate-100 text-slate-950 hover:bg-white'
-          }`}
-        >
-          <PlusCircle className="w-3.5 h-3.5" />
-          <span>Log Sighting</span>
+          <span>3 PM Switch Advice</span>
         </button>
       </div>
     </header>
