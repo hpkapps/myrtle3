@@ -1,0 +1,6 @@
+{
+  "name": "Myrtle Avenue Spotter Hub - Heathrow LHR (EGLL)",
+  "description": "The premier planespotting companion for Myrtle Avenue at London Heathrow. Live 27L approach radar, runway alternation schedule, camera focal length simulator, and spotter logbook.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
