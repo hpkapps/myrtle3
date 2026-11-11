@@ -18,10 +18,10 @@ export interface AffiliateProduct {
 
 export const MONETIZATION_CONFIG = {
   // Replace with your real Google AdSense publisher ID (e.g. 'ca-pub-1234567890123456')
-  adSenseClientId: 'ca-pub-9999999999999999',
+  adSenseClientId: 'ca-pub-9438919008162934',
   
   // Set to true once your AdSense site is approved by Google
-  enableLiveAdSense: false,
+  enableLiveAdSense: true,
 
   // Ad Slot IDs from your Google AdSense console
   adSlots: {
